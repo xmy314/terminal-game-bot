@@ -119,13 +119,13 @@ public class StarterAlgo implements GameLoop {
                     if (activated[y][x]>=1 && !( attacking && attacking_doors[choice_of_attack].x == x && attacking_doors[choice_of_attack].y == y) ){
                         Coords pos=new Coords(x,y);
                         Unit building = move.getWallAt(pos);
-                        if (! (building == null || building.stability<30)){
+                        if (! (building == null || building.stability<30 && building.stability !=1)){
                             continue;
                         }
                         if (building == null){
                             spawnBypos(move, pos);
                         }
-                        if (building!=null && building.stability<30 ){
+                        if (building!=null && building.stability<30 && building.stability !=1 ){
                             move.removeFirewall(pos);
                         }
                         
