@@ -94,11 +94,6 @@ public class StarterAlgo implements GameLoop {
     @Override
     public void onTurn(GameIO io, GameState move) {
 
-        Coords debug_pos=new Coords(13,8);
-        Unit debug_building = move.getWallAt(debug_pos);
-        if (debug_building!=null){
-            io.debug().println("@("+13+","+8+") is at"+debug_building.stability);
-        }
 
     
 
@@ -124,14 +119,14 @@ public class StarterAlgo implements GameLoop {
                     if (activated[y][x]>=1 && !( attacking && attacking_doors[choice_of_attack].x == x && attacking_doors[choice_of_attack].y == y) ){
                         Coords pos=new Coords(x,y);
                         Unit building = move.getWallAt(pos);
-                        if (! (building == null || building.stability<0.85)){
+                        if (! (building == null || building.stability<30)){
                             continue;
                         }
                         if (building == null){
                             spawnBypos(move, pos);
                         }
-                        if (building!=null && building.stability<0.5){
-                            io.debug().println("@("+x+","+y+") is at"+building.stability);
+                        if (building!=null && building.stability<30 ){
+                            move.removeFirewall(pos);
                         }
                         
                         for (int[] dir : directions){
