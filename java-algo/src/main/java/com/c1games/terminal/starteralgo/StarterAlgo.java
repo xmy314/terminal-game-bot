@@ -125,10 +125,14 @@ public class StarterAlgo implements GameLoop {
                         if (building == null){
                             spawnBypos(move, pos);
                         }
+                        if (building!=null && building.stability<0.5){
+                            io.debug().println("@("+x+","+y+") is at"+building.stability);
+                        }
+                        
                         for (int[] dir : directions){
                             Coords activiting_pos = new Coords(x+dir[0],y+dir[1]);
-                            if (activiting_pos.y<=13 && MapBounds.inArena(activiting_pos) && activation_type[y][x]!=0){
-                                activated[y][x]=1;
+                            if (activiting_pos.y<=13 && MapBounds.inArena(activiting_pos) && activation_type[activiting_pos.y][activiting_pos.x]!=0 && activated[activiting_pos.y][activiting_pos.x]<=0){
+                                activated[activiting_pos.y][activiting_pos.x]=1;
                                 spawnBypos(move, activiting_pos);
                             }
                         }
