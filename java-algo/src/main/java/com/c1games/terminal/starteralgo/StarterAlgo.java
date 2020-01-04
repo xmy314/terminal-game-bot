@@ -96,7 +96,7 @@ public class StarterAlgo implements GameLoop {
 
         Coords debug_pos=new Coords(13,8);
         Unit debug_building = move.getWallAt(debug_pos);
-        if (debug_building!=null && debug_building.stability<0.5){
+        if (debug_building!=null){
             io.debug().println("@("+13+","+8+") is at"+debug_building.stability);
         }
 
